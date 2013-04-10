@@ -351,19 +351,30 @@ def nfe_export(cr, uid, ids, nfe_environment='1', context=False):
                     StrRegN03['PICMSST'], StrRegN03['VICMSST'])
 
                 StrFile += StrN03
-                
-            if inv_line.icms_cst in ('40', '41', '50', '51'):
+
+            if icms_cst in ('40', '50'):
                 StrRegN06 = {
                    'Orig': inv_line.product_id.origin or '0',
                    'CST': inv_line.icms_cst,
                    'vICMS': str("%.2f" % inv_line.icms_value),
-                   'motDesICMS': '9', #FIXME
-                   }
-            
+                    'motDesICMS': '9',  # FIXME
+                }
                 StrN06 = 'N06|%s|%s|%s|%s|\n' % (
                     StrRegN06['Orig'], StrRegN06['CST'], StrRegN06['vICMS'],
                     StrRegN06['motDesICMS'])
-                
+                StrFile += StrN06
+
+
+            if icms_cst in ('41', '51'):
+                StrRegN06 = {
+                   'Orig': inv_line.product_id.origin or '0',
+                   'CST': inv_line.icms_cst,
+                   'vICMS': '',
+                   'motDesICMS': '',
+                }
+                StrN06 = 'N06|%s|%s|%s|%s|\n' % (
+                    StrRegN06['Orig'], StrRegN06['CST'], StrRegN06['vICMS'],
+                    StrRegN06['motDesICMS'])
                 StrFile += StrN06
             
             if inv_line.icms_cst in ('60'):                    
