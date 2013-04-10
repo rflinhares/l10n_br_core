@@ -356,8 +356,8 @@ def nfe_export(cr, uid, ids, nfe_environment='1', context=False):
                 StrRegN06 = {
                    'Orig': inv_line.product_id.origin or '0',
                    'CST': inv_line.icms_cst,
-                   'vICMS': str("%.2f" % inv_line.icms_value),
-                    'motDesICMS': '9',  # FIXME
+                   'vICMS': '',
+                    'motDesICMS': '',
                 }
                 StrN06 = 'N06|%s|%s|%s|%s|\n' % (
                     StrRegN06['Orig'], StrRegN06['CST'], StrRegN06['vICMS'],
@@ -369,8 +369,8 @@ def nfe_export(cr, uid, ids, nfe_environment='1', context=False):
                 StrRegN06 = {
                    'Orig': inv_line.product_id.origin or '0',
                    'CST': inv_line.icms_cst,
-                   'vICMS': '',
-                   'motDesICMS': '',
+                   'vICMS': str("%.2f" % inv_line.icms_value),
+                   'motDesICMS': '9',  # FIXME
                 }
                 StrN06 = 'N06|%s|%s|%s|%s|\n' % (
                     StrRegN06['Orig'], StrRegN06['CST'], StrRegN06['vICMS'],
