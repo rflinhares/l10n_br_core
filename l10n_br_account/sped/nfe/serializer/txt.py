@@ -352,7 +352,7 @@ def nfe_export(cr, uid, ids, nfe_environment='1', context=False):
 
                 StrFile += StrN03
 
-            if icms_cst in ('40', '50'):
+            if inv_line.icms_cst in ('40', '50'):
                 StrRegN06 = {
                    'Orig': inv_line.product_id.origin or '0',
                    'CST': inv_line.icms_cst,
@@ -365,7 +365,7 @@ def nfe_export(cr, uid, ids, nfe_environment='1', context=False):
                 StrFile += StrN06
 
 
-            if icms_cst in ('41', '51'):
+            if inv_line.icms_cst in ('41', '51'):
                 StrRegN06 = {
                    'Orig': inv_line.product_id.origin or '0',
                    'CST': inv_line.icms_cst,
