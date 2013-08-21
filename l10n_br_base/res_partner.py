@@ -27,6 +27,10 @@ from tools import fiscal
 class res_partner(orm.Model):
     _inherit = 'res.partner'
 
+    def _address_fields(self, cr, uid, context=None):
+        res = super(res_partner, self)._address_fields(cr, uid, context)
+        return res + ['l10n_br_city_id', 'district', 'number']
+
     def _display_address(self, cr, uid, address, without_company=False,
                         context=None):
         if address.country_id and address.country_id.code != 'BR':
